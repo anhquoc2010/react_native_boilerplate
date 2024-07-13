@@ -1,0 +1,138 @@
+{
+  "common": {
+    "key": "vi",
+    "theme": "Giao diện",
+    "darkTheme": "Giao diện tối",
+    "language": "Ngôn ngữ",
+    "cancel": "Huỷ bỏ",
+    "confirm": "Xác nhận",
+    "ok": "Đồng ý",
+    "done": "Hoàn tất",
+    "noInternet": "Không có kết nối Internet",
+    "continue": "Tiếp tục",
+    "save": "Lưu",
+    "letsGetStarted": "Bắt đầu!",
+    "version": "Phiên bản",
+    "dateFormat": "DD MMM, YYYY",
+    "timeFormat": "hh:mm A",
+    "submit": "Gửi",
+    "submitSuccess": "Yêu cầu đã được gửi thành công",
+    "submitFail": "Đã có lỗi khi gửi yêu cầu",
+    "confirmation": "Xác nhận",
+    "welcome": "Xin chào",
+    "detail": "Chi tiết",
+    "loading": "Vui lòng đợi"
+  },
+  "languageKey": {
+    "en": "English",
+    "vi": "Tiếng Việt"
+  },
+  "component": {
+    "fileViewButton": {
+      "updatedAt": "Cập nhật ngày {{updatedAt}}"
+    },
+    "dateTimePicker": {
+      "date": "ngày",
+      "time": "giờ",
+      "dateTime": "ngày và giờ",
+      "pick": "Chọn {{mode}}"
+    },
+    "flatList": {
+      "empty": "Danh sách rỗng"
+    },
+    "editableImage": {
+      "takePhoto": "Chụp ảnh",
+      "selectFromAlbum": "Chọn từ Album"
+    },
+    "input": {
+      "defaultLabel": "thông tin",
+      "input": "Nhập {{field}}",
+      "invalid": "{{field}} không hợp lệ",
+      "searchPlaceholder": "Nhập nội dung..."
+    },
+    "map": {
+      "pickLocation": "Chọn vị trí"
+    },
+    "picker": {
+      "chooseProvince": "Chọn tỉnh thành",
+      "chooseLanguage": "Chọn ngôn ngữ",
+      "chooseTitle": "Chọn tiêu đề",
+      "chooseImage": "Chọn hình ảnh"
+    }
+  },
+  "permissionDenied": {
+    "goToSettings": "Đi tới cài đặt",
+    "camera": "Để truy cập tính năng này, bạn cần cho phép \"{{appName}}\" sử dụng camera của bạn",
+    "photoLibrary": "Để truy cập tính năng này, bạn cần cho phép \"{{appName}}\" truy cập vào thư viện của bạn",
+    "location": "Để có thể sử dụng toàn bộ tính năng của bản đồ, bạn cần cho phép \"{{appName}}\" truy cập vào vị trí hiện tại của bạn"
+  },
+  "exception": {
+    "400": "Thông tin không hợp lệ. Vui Lòng kiểm tra lại",
+    "401": "Số điện thoại hoặc mật khẩu không chính xác",
+    "403": "Tài khoản hiện tại không có quyền truy cập vào trang này",
+    "404": "Nội dung hiện không có sẵn. Vui lòng thử lại sau",
+    "408": "Mạng không ổn định. Vui lòng thử lại sau",
+    "500": "Đã có lỗi xảy ra. Vui lòng thử lại sau",
+    "502": "Máy chủ đang được bảo trì. Vui lòng thử lại sau",
+    "503": "Dịch vụ hiện không có sẵn. Vui lòng thử lại sau"
+  },
+  "bottomTab": {
+    "home": "Trang chủ",
+    "settings": "Cài đặt"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "loginMobile": "Đăng nhập với SĐT",
+    "forgot": "Quên mật khẩu?",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất",
+    "logoutDescription": "Bạn có chắc chắn muốn đăng xuất không?",
+    "or": "hoặc",
+    "facebook": "Đăng nhập với Facebook",
+    "google": "Đăng nhập với Google",
+    "haveAccount": "Bạn chưa có tài khoản?",
+    "alreadyAccount": "Đã có tài khoản?",
+    "descriptionForgot": "Nhập Email. Chúng tôi sẽ gửi hướng dẫn khôi phục mật khẩu qua Email của bạn",
+    "buttonLoginMobile": "Nhận mã",
+    "titleVerify": "Xác thực tài khoản của bạn",
+    "getBackVerify": "Gửi lại mã OTP?",
+    "sendVerify": "Gửi",
+    "buttonVerify": "Xác nhận ngay bây giờ",
+    "fillVerifyOtp": "Vui lòng xác nhận OTP",
+    "successVerifyOtp": "Đã xác nhận",
+    "resendOtp": "Gửi lại mã OTP"
+  },
+  "field": {
+    "title": "Tiêu đề",
+    "birthday": "Ngày sinh",
+    "email": "Email",
+    "phoneNumber": "Số điện thoại",
+    "gender": "Giới tính",
+    "male": "Nam",
+    "female": "Nữ",
+    "post": "Nội dung",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "coverImage": "Ảnh bìa"
+  },
+  "placeholder": {
+    "post": "Nhập nội dung...",
+    "coverImage": "Chọn ảnh bìa"
+  },
+  "validator": {
+    "required": "{{field}} không được để trống",
+    "invalid": "{{field}} không hợp lệ",
+    "min": " Bạn cần nhập thêm {{remain}} ký tự",
+    "max": "{{field}} không được dài hơn {{max}} ký tự",
+    "tooShort": "Mật khẩu quá ngắn!",
+    "notMatch": "Mật khẩu không trùng khớp",
+    "invalidEmail": "Email không hợp lệ",
+    "isString": "{{field}} phải có dạng chuỗi",
+    "isNumber": "{{field}} phải có dạng số",
+    "isDatetime": "{{field}} phải có dạng ngày tháng",
+    "isObject": "{{field}} phải là một đối tượng",
+    "greaterThan": "{{field}} phải lớn hơn {{value}}",
+    "lessThan": "{{field}} phải nhỏ hơn {{value}}"
+  }
+}

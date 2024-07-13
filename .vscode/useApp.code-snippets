@@ -1,0 +1,18 @@
+{
+  "Redux List Example": {
+    "description": "ReduxListClassScreen",
+    "scope": "typescriptreact",
+    "prefix": "useapp",
+    "body": [
+      "const [loading, data, error] = useAppSelector(",
+      "  (state) => [",
+      "    state.$0.loading,",
+      "    state.$0.data,",
+      "    state.$0.error",
+      "  ]",
+      ");",
+      "const dispatch = useAppDispatch();",
+      ""
+    ]
+  }
+}

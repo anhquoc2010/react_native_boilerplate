@@ -1,0 +1,13 @@
+{
+  "Create HOC": {
+    "description": "Use Base",
+    "scope": "typescriptreact",
+    "prefix": "usebase",
+    "body": [
+      "const [${1/^([a-zA-Z])/${1:/downcase}/}Loading, set${1/^([a-zA-Z])/${1:/upcase}/}Loading] = useState(false);",
+      "const [${1/^([a-zA-Z])/${1:/downcase}/}Data, set${1/^([a-zA-Z])/${1:/upcase}/}Data] = useState<any>({});",
+      "const [${1/^([a-zA-Z])/${1:/downcase}/}Error, set${1/^([a-zA-Z])/${1:/upcase}/}Error] = useState<TError | null>(null);",
+      ""
+    ]
+  }
+}

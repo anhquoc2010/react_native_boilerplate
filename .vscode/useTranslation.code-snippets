@@ -1,0 +1,7 @@
+{
+  "Theme": {
+    "scope": "typescriptreact",
+    "prefix": "useTranslation",
+    "body": ["const { t } = useTranslation();"]
+  }
+}

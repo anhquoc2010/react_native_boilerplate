@@ -1,0 +1,7 @@
+{
+  "Theme": {
+    "scope": "typescriptreact",
+    "prefix": "useTheme",
+    "body": ["const theme = useTheme();"]
+  }
+}

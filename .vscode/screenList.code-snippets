@@ -1,0 +1,40 @@
+{
+  "Pure List Example": {
+    "description": "ListFunctionScreen",
+    "scope": "typescriptreact",
+    "prefix": "scrList",
+    "body": [
+      "import React from 'react';",
+      "import { useTheme } from '@react-navigation/native';",
+      "import { useTranslation } from 'react-i18next';",
+      "import { Text, Touchable, View } from '@components';",
+      "import { useListRequest } from '@components/hooks';",
+      "import AppView from '@utils/AppView';",
+      "",
+      "const ${1:${TM_FILENAME_BASE/^([a-zA-Z])/${1:/upcase}/}}: React.FC = () => {",
+      "  const theme = useTheme();",
+      "  const { t } = useTranslation();",
+      "",
+      "  const { renderFlatList } = useListRequest('/$2');",
+      "",
+      "  const renderItem = ({ item }: any) => (",
+      "    <Touchable onPress={() => {}}>",
+      "      <Text>{item.id}</Text>",
+      "    </Touchable>",
+      "  );",
+      "",
+      "  return (",
+      "    <View className=\"flex-1\">",
+      "      {renderFlatList({",
+      "        renderItem,",
+      "        contentContainerStyle: { paddingHorizontal: AppView.bodyPaddingHorizontal },",
+      "      })}",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "export default $1;",
+      ""
+    ]
+  }
+}

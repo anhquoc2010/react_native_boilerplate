@@ -1,0 +1,187 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  ### --- HELPER --- ###
+  identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+
+  before_all do |lane, options|
+    if is_ci
+      create_keychain(
+        name: ENV["KEYCHAIN_NAME"],
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+        lock_when_sleeps: true,
+        password: ENV["KEYCHAIN_PASSWORD"]
+      )
+      sh 'brew install imagemagick'
+    end
+  end
+
+  lane :get_version do
+    IOS_VERSION_NAME = get_version_number(target: ENV["TARGET"])
+    IOS_VERSION_CODE = get_build_number()
+
+    [IOS_VERSION_NAME, IOS_VERSION_CODE]
+  end
+
+  lane :sync_device_info do
+    register_devices(
+      devices_file: "fastlane/DeviceFile.txt"
+    )
+  end
+
+  lane :increment_version_code do
+    increment_build_number
+  end
+
+  lane :increment_version_name do
+    version = get_version_number(target: ENV["TARGET"])
+    increment_version_number(version_number: version)
+    increment_version_number()
+  end
+
+  desc "Sync All Cert & Provisioning Profile (Match => Github)"
+  lane :sign do |options|
+    match(
+      type: options[:type] == "release" ? "appstore" : "development",
+      app_identifier: [identifier, identifier + ".staging", identifier + ".development"],
+      keychain_name: ENV["KEYCHAIN_NAME"],
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+    )
+
+    if options[:type] == "release"
+      code_sign_identity = ENV["PRODUCTION_CODE_SIGNING_IDENTITY"]
+      profile = ENV["sigh_#{identifier}_appstore_profile-path"]
+    else
+      code_sign_identity = ENV["STAGING_CODE_SIGNING_IDENTITY"]
+      profile = ENV["sigh_#{identifier + ".staging"}_development_profile-path"]
+      sync_device_info
+    end
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      code_sign_identity: code_sign_identity
+    )
+    update_project_provisioning(profile: profile)
+  end
+
+  lane :handle_badge do |options|
+    if options[:type] != "release"
+      color = options[:type] == "staging" ? "blue" : "yellow"
+      version = get_version
+      add_badge(
+        shield: "#{version[0]}-#{version[1]}-#{color}",
+        shield_scale: "0.6",
+        # shield_gravity: "NorthWest"
+      )
+    end
+  end
+
+  lane :build do |options|
+    if options[:type] == "release"
+      increment_version_code
+      increment_version_name
+      sign(type: "release")
+    else
+      increment_version_code
+      handle_badge(type: "staging")
+      sign(type: "staging")
+    end
+
+    if options[:type] == "release"
+      build_app(
+        scheme: ENV["SCHEME"],
+        export_method: "app-store",
+        include_bitcode: true
+      )
+    else
+      build_app(
+        scheme: "[STAG] " + ENV["SCHEME"],
+        configuration: "StagingRelease",
+        export_method: "development",
+      )
+    end
+  end
+
+  desc "Push a new staging build to Firebase App Distribution"
+  lane :firebase_staging do
+    firebase_app_distribution(
+      app: ENV["FIREBASE_IOS_STAG_APP"],
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      release_notes: "Lots of amazing new features to test out!",
+      groups: ENV["FIREBASE_IOS_STAG_GROUPS"]
+    )
+  end
+
+  lane :upload_to_store do
+    upload_to_app_store(
+      force: true,
+      automatic_release: false,
+      release_notes: {
+        "en-US": "- Improve app performance\n- Fix bugs"
+      },
+      submission_information: {
+        "export_compliance_uses_encryption": false,
+        "add_id_info_uses_idfa": false
+      },
+      submit_for_review: true
+    )
+  end
+
+  lane :commit_version do |options|
+    if is_ci
+      # sh 'git checkout HEAD -- "../${SCHEME_PATH}/project.pbxproj"'
+      reset_git_repo(force: true)
+      if options[:type] == "release"
+        increment_version_code
+        increment_version_name
+      else
+        increment_version_code
+      end
+
+      commit_version_bump(
+        message: 'Version Bump',
+        include: %w[yarn.lock ios/Podfile.lock],
+        xcodeproj: ENV["SCHEME_PATH"],
+      )
+      push_to_git_remote(remote_branch: "dev", force: true)
+    end
+  end
+
+##############################################################################################################
+
+  ### --- STAGING --- ###
+  desc "Push a new staging build"
+  lane :staging do
+    build(type: "staging")
+    firebase_staging
+    commit_version(type: "staging")
+  end
+
+  ### --- RELEASE --- ###
+  desc "Push a new release build"
+  lane :release do
+    build(type: "release")
+    # upload_to_testflight
+    upload_to_store
+    commit_version(type: "release")
+  end
+
+##############################################################################################################
+end

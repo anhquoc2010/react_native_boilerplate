@@ -1,0 +1,22 @@
+{
+  "Create HOC": {
+    "description": "HOC",
+    "scope": "typescriptreact",
+    "prefix": "hoc",
+    "body": [
+      "import React from 'react';",
+      "import AppHelper from '@utils/AppHelper';",
+      "const ${1:${TM_FILENAME_BASE/^([a-zA-Z])/${1:/downcase}/}} = (params: { $2 }) => (WrappedComponent: React.ComponentType<any>) => {",
+      "  const ${1/^([a-zA-Z])/${1:/upcase}/}: React.FC<any> = React.forwardRef((props: any, ref) => {",
+      "    return <WrappedComponent ref={ref} {...props} />;",
+      "  });",
+      "  ${1/^([a-zA-Z])/${1:/upcase}/}.displayName = `$1(${AppHelper.getComponentDisplayName(WrappedComponent)})`;",
+      "",
+      "  return ${1/^([a-zA-Z])/${1:/upcase}/};",
+      "};",
+      "",
+      "export default $1;",
+      ""
+    ]
+  }
+}

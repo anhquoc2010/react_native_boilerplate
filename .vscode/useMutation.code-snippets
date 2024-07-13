@@ -1,0 +1,10 @@
+{
+  "Create HOC": {
+    "description": "Use Mutation",
+    "scope": "typescriptreact",
+    "prefix": "useMutation",
+    "body": [
+      "const [ $1, {loading: $1Loading, data: $1Data, error: $1Error} ] = useMutation('/$2', 'POST');"
+    ]
+  }
+}

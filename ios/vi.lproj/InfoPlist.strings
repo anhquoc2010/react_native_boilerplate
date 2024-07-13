@@ -1,0 +1,21 @@
+/* 
+  InfoPlist.strings
+  RNBase
+
+  Created by Long LE VIET on 26/03/2024.
+  
+*/
+
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Truy cập Vị trí";
+
+"NSLocationAlwaysUsageDescription" = "Truy cập Vị trí";
+
+"NSLocationWhenInUseUsageDescription" = "Truy cập Vị trí";
+
+"NSCameraUsageDescription" = "Truy cập Camera";
+
+"NSPhotoLibraryAddUsageDescription" = "YOUR TEXT";
+
+"NSPhotoLibraryUsageDescription" = "Truy cập Thư viện";
+
+"NSMicrophoneUsageDescription" = "YOUR TEXT";

@@ -1,0 +1,167 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  ### --- HELPER --- ###
+  lane :get_version do
+    path = '../app/build.gradle'
+    s = File.read(path)
+
+    # Version Name
+    vn = /versionName\s\"+(\d+.\d+.\d+)\"/ 
+    ANDROID_VERSION_NAME = s[vn, 1]
+    
+    # Version Code
+    vc = /versionCode\s+(\d+)/ 
+    ANDROID_VERSION_CODE = s[vc, 1]
+
+    [ANDROID_VERSION_NAME, ANDROID_VERSION_CODE]
+  end
+
+  lane :increment_version_code do
+    path = '../app/build.gradle'
+    s = File.read(path)
+
+    # Version Code
+    vc = /versionCode\s+(\d+)/ 
+    versionCode = s[vc, 1].to_i
+    s[vc, 1] = (versionCode + 1).to_s
+  
+    f = File.new(path, 'w')
+    f.write(s)
+    f.close
+  end
+
+  lane :increment_version_name do
+    path = '../app/build.gradle'
+    s = File.read(path)
+
+    # Version Name
+    vn = /versionName\s\"+(\d+.\d+.\d+)\"/ 
+    versionName = s[vn, 1]
+    versionNameArray = versionName.split('.',3)
+    newVersionName = versionNameArray[0] + '.' + versionNameArray[1] + '.' + (versionNameArray[2].to_i+1).to_s 
+    s[vn, 1] = newVersionName
+      
+    f = File.new(path, 'w')
+    f.write(s)
+    f.close
+  end
+
+  lane :handle_badge do |options|
+    if options[:type] != "release"
+      color = options[:type] == "staging" ? "blue" : "yellow"
+      version = get_version
+      add_badge(
+        shield: "#{version[0]}-#{version[1]}-#{color}",
+        glob: "/app/src/main/res/mipmap-*/ic_launcher.png",
+        shield_scale: "0.6",
+        # shield_gravity: "NorthWest"
+      )
+    end
+  end
+
+  lane :build do |options|
+    if options[:type] == "release"
+      increment_version_code
+      increment_version_name
+    else
+      increment_version_code
+      handle_badge(type: "staging")
+    end
+
+    # gradle(task: "clean assembleRelease")
+    # crashlytics
+
+    # Google SignIn Bugs on CI => Replace (task: 'assemble') with (task: 'app:assemble')
+    # https://stackoverflow.com/questions/52512326/com-android-builder-internal-aapt-v2-aapt2exception-android-resource-compilatio
+    pwd = Dir.pwd.sub! 'fastlane', 'app/'
+    key_path = pwd + ENV["MYAPP_UPLOAD_STORE_FILE"]
+    gradle(
+      task: options[:bundle] == true ? "app:bundle" : "app:assemble",
+      build_type: options[:type] == "release" ? "Release" : "StagingRelease",
+      properties: {
+        "android.injected.signing.store.file" => key_path,
+        "android.injected.signing.key.alias" => ENV["MYAPP_UPLOAD_KEY_ALIAS"],
+        "android.injected.signing.store.password" => ENV["MYAPP_UPLOAD_STORE_PASSWORD"],
+        "android.injected.signing.key.password" => ENV["MYAPP_UPLOAD_KEY_PASSWORD"]
+      }
+    )
+  end
+
+  desc "Push a new staging build to Firebase App Distribution"
+  lane :firebase_staging do
+    firebase_app_distribution(
+      app: ENV["FIREBASE_ANDROID_STAG_APP"],
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      release_notes: "Lots of amazing new features to test out!",
+      groups: ENV["FIREBASE_ANDROID_STAG_GROUPS"]
+    )
+  end
+
+  lane :commit_version do
+    if is_ci
+      sh 'git config --global user.name "Fastlane CI" && git config --global user.email "fastlane_ci@gmail.com"'
+      git_commit(path: ["./app/build.gradle"], message: "Version Bump")
+      push_to_git_remote(remote_branch: "dev", force: true)
+    end
+  end
+
+  lane :upload_to_store do
+    upload_to_play_store(
+      json_key_data: ENV["CERTIFICATE"],
+      # track: "alpha",
+      # track_promote_to: "beta",
+      # deactivate_on_promote: false,
+      # metadata_path: "fastlane/release/",
+      aab: './app/build/outputs/bundle/release/app-release.aab',
+      skip_upload_apk: true,
+      # skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      skip_upload_changelogs: true,
+    )
+  end
+
+##############################################################################################################
+
+  ### --- TESTING --- ###
+  desc "Android Testing"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  ### --- STAGING --- ###
+  desc "Push a new staging build"
+  lane :staging do
+    build(type: "staging")
+    firebase_staging
+    commit_version
+  end
+
+  ### --- RELEASE --- ###
+  desc "Push a new release build"
+  # fastlane supply init => Download metadata for an existing app
+  lane :release do
+    build(type: "release")
+    upload_to_store
+    commit_version
+  end
+
+##############################################################################################################
+end

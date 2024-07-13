@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "115172582271",
+    "project_id": "rnbase-c0c47",
+    "storage_bucket": "rnbase-c0c47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115172582271:android:c494d791dd3d27df18f04a",
+        "android_client_info": {
+          "package_name": "app.rnbase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjReH2ctiMmheE2ti8AYKuIE7KfTsCJEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115172582271:android:bb8451b7fbd964ad18f04a",
+        "android_client_info": {
+          "package_name": "app.rnbase.development"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjReH2ctiMmheE2ti8AYKuIE7KfTsCJEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115172582271:android:481a0cc1f59496cf18f04a",
+        "android_client_info": {
+          "package_name": "app.rnbase.staging"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjReH2ctiMmheE2ti8AYKuIE7KfTsCJEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

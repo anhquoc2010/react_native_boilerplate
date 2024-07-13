@@ -1,0 +1,8 @@
+{
+  "Create HOC": {
+    "description": "Use Request",
+    "scope": "typescriptreact",
+    "prefix": "useRequest",
+    "body": ["const { loading, data, error } = useRequest('/$1');"]
+  }
+}

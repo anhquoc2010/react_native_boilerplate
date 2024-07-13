@@ -1,0 +1,35 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@app": ["src/app/index.tsx"],
+      "@configs/*": ["src/core/configs/*"],
+      "@locales": ["src/containers/locales/index.ts"],
+      "@locales/*": ["src/containers/locales/*"],
+      "@routes": ["src/containers/routes/index.tsx"],
+      "@routes/*": ["src/containers/routes/*"],
+      "@screens": ["src/containers/screens/index.tsx"],
+      "@screens/*": ["src/containers/screens/*"],
+      "@store": ["src/containers/store/index.ts"],
+      "@store/*": ["src/containers/store/*"],
+      "@containers/*": ["src/containers/*"],
+      "@themes/*": ["src/core/themes/*"],
+      "@utils/*": ["src/core/utils/*"],
+      "@plugins/*": ["src/core/plugins/*"],
+      "@validators": ["src/core/validators/index.ts"],
+      "@core/*": ["src/core/*"],
+      "@fonts": ["src/assets/fonts/Type.ts"],
+      "@fonts/*": ["src/assets/fonts/*"],
+      "@images": ["src/assets/images/index.ts"],
+      "@images/*": ["src/assets/images/*"],
+      "@icons": ["src/assets/icons/index.ts"],
+      "@icons/*": ["src/assets/icons/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components": ["src/components/index.ts"],
+      "@components/*": ["src/components/*"],
+      "@src/*": ["src/*"]
+    }
+  }
+}

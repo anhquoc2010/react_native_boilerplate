@@ -1,0 +1,144 @@
+{
+  "common": {
+    "key": "en",
+    "theme": "Theme",
+    "darkTheme": "Dark Theme",
+    "language": "Language",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "OK",
+    "done": "Done",
+    "connectionLost": "Connection lost",
+    "connectionLostDesc": "Your data will cache locally and will be uploaded when the connection is restored",
+    "connectionRestored": "Connection restored",
+    "connectionRestoredDesc": "Your data will be synchronized with the server",
+    "noInternet": "No internet",
+    "continue": "Continue",
+    "save": "Save",
+    "letsGetStarted": "Let's get started!",
+    "version": "Version",
+    "dateFormat": "MMM DD, YYYY",
+    "timeFormat": "hh:mm A",
+    "submit": "Submit",
+    "submitSuccess": "Submission successful",
+    "submitFail": "Submission failed",
+    "confirmation": "Confirmation",
+    "welcome": "Welcome",
+    "detail": "Detail",
+    "loading": "Loading"
+  },
+  "languageKey": {
+    "en": "English",
+    "vi": "Tiếng Việt"
+  },
+  "component": {
+    "fileViewButton": {
+      "updatedAt": "Updated at {{updatedAt}}"
+    },
+    "dateTimePicker": {
+      "date": "date",
+      "time": "time",
+      "dateTime": "date & time",
+      "pick": "Pick {{mode}}"
+    },
+    "flatList": {
+      "empty": "Empty List"
+    },
+    "editableImage": {
+      "takePhoto": "Take photograph",
+      "selectFromAlbum": "Select from album"
+    },
+    "input": {
+      "defaultLabel": "Info",
+      "input": "Input {{field}}",
+      "invalid": "{{field}} is not valid",
+      "searchPlaceholder": "Type here..."
+    },
+    "map": {
+      "pickLocation": "Pick Location"
+    },
+    "picker": {
+      "chooseProvince": "Choose province",
+      "chooseLanguage": "Choose language",
+      "chooseTitle": "Choose title",
+      "chooseImage": "Choose image"
+    }
+  },
+  "permissionDenied": {
+    "goToSettings": "Go to Settings",
+    "camera": "To access this feature, you need to allow \"{{appName}}\" to use your camera",
+    "photoLibrary": "To access this feature, you need to allow \"{{appName}}\" to access your library",
+    "location": "To use all features of the map, you need to allow \"{{appName}}\" to access your location"
+  },
+  "exception": {
+    "400": "Invalid Input. Please check again",
+    "401": "Email or password is incorrect",
+    "403": "Forbidden",
+    "404": "Cannot find Item",
+    "405": "Method Not Allowed",
+    "408": "Request time out! Please try again",
+    "429": "You have sent too many requests in a given amount of time. Please try again later",
+    "500": "Something went wrong. Please try again later",
+    "502": "The server is under maintenance. Please try again later",
+    "503": "Service Unavailable. Please try again later"
+  },
+  "bottomTab": {
+    "home": "Home",
+    "settings": "Settings"
+  },
+  "auth": {
+    "login": "Login",
+    "loginMobile": "Login with Mobile",
+    "forgot": "Forgot Password?",
+    "register": "Register",
+    "logout": "Logout",
+    "logoutDescription": "Are you sure you want to log out?",
+    "or": "or",
+    "facebook": "Sign In with Facebook",
+    "google": "Sign In with Google",
+    "haveAccount": "Don't have an account?",
+    "alreadyAccount": "Already have an account?",
+    "descriptionForgot": "Enter your account email address and we'll send instructions on how to reset your password",
+    "buttonLoginMobile": "Get Code",
+    "titleVerify": "Verify Your Account",
+    "getBackVerify": "get back OTP?",
+    "sendVerify": "send for me",
+    "buttonVerify": "Verify Now",
+    "fillVerifyOtp": "Please validate OTP",
+    "successVerifyOtp": "verified!",
+    "resendOtp": "Resend verification code?"
+  },
+  "field": {
+    "title": "Title",
+    "birthday": "Birthday",
+    "email": "Email",
+    "phoneNumber": "Phone number",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "post": "Blog post",
+    "username": "Username",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "coverImage": "Cover image"
+  },
+  "placeholder": {
+    "post": "Write post...",
+    "coverImage": "Choose cover image"
+  },
+  "validator": {
+    "required": "{{field}} is required",
+    "invalid": "Invalid {{field}}",
+    "min": "{{remain}} characters to go",
+    "max": "{{field}} cannot be longer than {{max}} characters",
+    "tooShort": "Too short!",
+    "notMatch": "Passwords do not match",
+    "invalidEmail": "Invalid email",
+    "isString": "{{field}} must be a string",
+    "isNumber": "{{field}} must be a number",
+    "isDatetime": "{{field}} must be a datetime",
+    "isObject": "{{field}} must be an object",
+    "greaterThan": "{{field}} must be greater than {{value}}",
+    "lessThan": "{{field}} must be less than {{value}}"
+  }
+}

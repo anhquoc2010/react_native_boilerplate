@@ -1,0 +1,27 @@
+diff --git a/node_modules/nativewind/dist/styled/index.js b/node_modules/nativewind/dist/styled/index.js
+index 2f1f179..5d4baa1 100644
+--- a/node_modules/nativewind/dist/styled/index.js
++++ b/node_modules/nativewind/dist/styled/index.js
+@@ -24,6 +24,22 @@ function styled(Component, styledBaseClassNameOrOptions, maybeOptions = {}) {
+         const store = (0, react_1.useContext)(style_sheet_1.StoreContext);
+         const groupContext = (0, react_1.useContext)(group_context_1.GroupContext);
+         const isolateGroupContext = (0, react_1.useContext)(group_context_1.IsolateGroupContext);
++        const addDarkMode = (className) => {
++            if (className) {
++                const classNameProps = className.split(" ");
++                className.split(" ").forEach(e => {
++                    if (e.includes('color')) {
++                        const darkModeColor = `dark:${e}-dark`;
++                        if (classNameProps.findIndex(e => e === darkModeColor) === -1) {
++                            classNameProps.push(darkModeColor);
++                        }
++                    }
++                });
++                return classNameProps.join(' ')
++            }
++            return className
++        }
++        propClassName = addDarkMode(propClassName)
+         const classNameWithDefaults = baseClassName
+             ? `${baseClassName} ${twClassName !== null && twClassName !== void 0 ? twClassName : propClassName}`
+             : twClassName !== null && twClassName !== void 0 ? twClassName : propClassName;

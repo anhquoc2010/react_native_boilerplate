@@ -1,0 +1,23 @@
+module.exports = {
+  dark: true,
+  colors: {
+    primary: '#219EE5',
+    background: '#000000',
+    card: '#1c1c1e',
+    text: '#ffffff',
+    border: '#272729',
+    notification: '#ff453a',
+    grey5: '#393e42',
+    grey4: '#43484d',
+    grey3: '#5e6977',
+    grey2: '#86939e',
+    grey1: '#bdc6cf',
+    grey0: '#e1e8ee',
+    white: '#080808',
+    black: '#f2f2f2',
+    info: '#36A3F7',
+    success: '#34BFA3',
+    warning: '#FFB822',
+    error: '#F4516C',
+  },
+};

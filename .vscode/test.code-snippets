@@ -1,0 +1,18 @@
+{
+  "TestRN": {
+    "scope": "typescriptreact",
+    "prefix": "rntest",
+    "body": [
+      "import React from 'react';",
+      "import { render } from '@utils/TestHelper';",
+      "import ${1:${TM_FILENAME_BASE/^([a-zA-Z])/${1:/upcase}/}} from './${2:index}';",
+      "",
+      "test('should run correctly', () => {",
+      "  const { toJSON, getByTestId } = render(<$1 />);",
+      "  expect(toJSON()).toMatchSnapshot();",
+      "  expect(getByTestId('$1')).toBeTruthy();",
+      "});",
+      ""
+    ]
+  }
+}

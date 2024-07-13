@@ -1,0 +1,8 @@
+{
+  "Create HOC": {
+    "description": "Use List Request",
+    "scope": "typescriptreact",
+    "prefix": "useListRequest",
+    "body": ["const { renderFlatList } = useListRequest('/$1');"]
+  }
+}

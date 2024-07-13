@@ -1,0 +1,22 @@
+/* 
+  InfoPlist.strings
+  RNBase
+
+  Created by Long LE VIET on 26/03/2024.
+  
+*/
+
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "YOUR TEXT";
+
+"NSLocationAlwaysUsageDescription" = "YOUR TEXT";
+
+"NSLocationWhenInUseUsageDescription" = "YOUR TEXT";
+
+"NSCameraUsageDescription" = "YOUR TEXT";
+
+"NSPhotoLibraryAddUsageDescription" = "YOUR TEXT";
+
+"NSPhotoLibraryUsageDescription" = "YOUR TEXT";
+
+"NSMicrophoneUsageDescription" = "YOUR TEXT";
+

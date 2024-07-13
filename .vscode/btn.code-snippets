@@ -1,0 +1,7 @@
+{
+  "Theme": {
+    "scope": "typescriptreact",
+    "prefix": "btn",
+    "body": ["<Button title={t('${1:common.ok}')} onPress={$2}/>"]
+  }
+}
